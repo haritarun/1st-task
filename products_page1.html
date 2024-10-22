@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops - Products</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .logoImage {
+            height: 70px;
+            width: 70px;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+        }
+
+        .heading .logoImage img {
+            height: 50px;
+        }
+
+        .lines-3 {
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .navBar {
+            margin: 0;
+            display: flex;
+        }
+
+        .navLinks {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .navLinks a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navLinks a:hover {
+            color: #ff9800;
+        }
+
+        .homePoduct {
+            padding: 2rem;
+        }
+
+        .titalpage {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .productmainContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .productcard {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .productcard:hover {
+            transform: scale(1.05);
+        }
+
+        .imageProduct {
+            width: 100%;
+            height: auto;
+        }
+
+        .productName {
+            font-size: 1.5rem;
+            margin: 0.5rem;
+            text-align: center;
+        }
+
+        .descriptionProduct {
+            font-size: 1rem;
+            color: #555;
+            margin: 0.5rem;
+            text-align: center;
+        }
+
+        .buyButton {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 1rem;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .buyButton:hover {
+            background-color: #e68a00;
+        }
+
+        .paginationMainContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .paginationMainContainer a {
+            margin: 0 0.5rem;
+            text-decoration: none;
+            color: #ff9800;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ff9800;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .paginationMainContainer a:hover {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .paginationButtons {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .paginationButtons button {
+            background-color: #ff9800;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .paginationButtons button:hover {
+            background-color: #e68a00;
+        }
+
+        .paginationButtons button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .lines-3 {
+                display: block;
+            }
+
+            .navBar {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: #333;
+                width: 100%;
+                padding: 1rem 0;
+                z-index: 1000;
+            }
+
+            .navBar.active {
+                display: flex;
+            }
+
+            .navLinks {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navLinks a {
+                padding: 0.5rem 0;
+            }
+
+            .logoImage {
+                height: 50px;
+                width: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .productmainContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <heading class="heading">
+        <a href="index.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBh3QM_hhSRiVReYTZm3KdJ-aIpNlvyEzLaO0bOGOr2R53-rZLTa44uvMTdNZScgLW668&usqp=CAU" alt="logoImage" class="logoImage">
+        </a>
+        <span class="lines-3" onclick="toggle()">&#9776;</span>
+        <nav class="navBar" id="navMenu">
+            <ul class="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="products_page1.html">Cart</a></li>
+            </ul>
+        </nav>
+    </heading>
+
+    <main class="homePoduct" id="products">
+        <h2 class="titalpage">Products</h2>
+        <div id="productmainContainer" class="productmainContainer"></div>
+        <div class="paginationMainContainer" id="pagination"></div>
+        <div class="paginationButtons">
+            <button id="prevButton" onclick="prevPage()">Previous</button>
+            <button id="nextButton" onclick="nextPage()">Next</button>
+        </div>
+    </main>
+
+    <script>
+        const products = [
+            { 
+                name: "Vivo", 
+                description: "Intel Core i5, 8GB RAM, 256GB SSD", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYOVNvRJ9S8mw08YHAKAy7eScw9V069WuYMw&s" },
+            { 
+                name: "Oppo", 
+                description: "AMD Ryzen 5, 16GB RAM, 512GB SSD", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYOVNvRJ9S8mw08YHAKAy7eScw9V069WuYMw&s" },
+            { 
+                name: "HP", 
+                description: "Intel Core i7, 16GB RAM, 1TB SSD", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYOVNvRJ9S8mw08YHAKAy7eScw9V069WuYMw&s" },
+            { 
+                name: "Mac Book", 
+                description: "Dell XPS 13, Intel Core i5, 8GB RAM", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLbX_Xw5SueXizKMHSV1e9liUIO9g7vVBQVQ&s" },
+            { 
+                name: "Acer", 
+                description: "HP Spectre x360, Intel Core i7, 16GB RAM", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLbX_Xw5SueXizKMHSV1e9liUIO9g7vVBQVQ&s" },
+            { 
+                name: "Victus", 
+                description: "Asus ZenBook, Intel Core i5, 8GB RAM", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLbX_Xw5SueXizKMHSV1e9liUIO9g7vVBQVQ&s" },
+            { 
+                name: "Nitro", 
+                description: "Acer Predator, Intel Core i7, 16GB RAM", 
+                image: "https://lntsufin.com/storage/mediafiles/catalog/live/15805-19/original/15805-19_image_0.jpg" },
+            { 
+                name: "Intel", 
+                description: "HP Omen, Intel Core i7, 32GB RAM", 
+                image: "https://lntsufin.com/storage/mediafiles/catalog/live/15805-19/original/15805-19_image_0.jpg" },
+                { 
+                name: "Intel", 
+                description: "HP Omen, Intel Core i7, 32GB RAM", 
+                image: "https://lntsufin.com/storage/mediafiles/catalog/live/15805-19/original/15805-19_image_0.jpg" },
+                { 
+                name: "Intel", 
+                description: "HP Omen, Intel Core i7, 32GB RAM", 
+                image: "https://lntsufin.com/storage/mediafiles/catalog/live/15805-19/original/15805-19_image_0.jpg" },
+                
+                
+                
+
+
+        ];
+
+        const pages = 4; 
+        let cur = 1;
+
+        function display(page) {
+            const started = (page - 1) * pages;
+            const final = started + pages;
+            const homePoduct = document.getElementById('productmainContainer');
+            homePoduct.innerHTML = "";
+
+            products.slice(started, final).forEach(product => {
+                const item = `
+                    <div class="productcard">
+                        <img src="${product.image}" alt="${product.name}" class="imageProduct">
+                        <h3 class="productName">${product.name}</h3>
+                        <p class="descriptionProduct">${product.description}</p>
+                        <a href="#" class="buyButton">Buy Now</a>
+                    </div>
+                `;
+                homePoduct.innerHTML += item;
+            });
+
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const pagesTotal = Math.ceil(products.length / pages);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = "";
+
+            for (let i = 1; i <= pagesTotal; i++) {
+                const link = `<a href="#" class="paginationMainContainer" onclick="display(${i})">${i}</a>`;
+                pagination.innerHTML += link;
+            }
+
+            
+        }
+
+        function prevPage() {
+            if (cur > 1) {
+                cur--;
+                display(cur);
+            }
+        }
+
+        function nextPage() {
+            const pagesTotal = Math.ceil(products.length / pages);
+            if (cur < pagesTotal) {
+                cur++;
+                display(cur);
+            }
+        }
+
+        function toggle() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        display(cur);
+    </script>
+</body>
+</html>
